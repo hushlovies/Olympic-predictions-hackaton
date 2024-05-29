@@ -2,7 +2,7 @@
 
 API python FLASK avec VueJS pour le front et javascript vanilla 
 
-# Commande pour ininitialisé le projet 
+# Commande pour initialisé le projet 
 
 Dans le terminal backend 
  - npm install vue-router@4              # pour les routes
