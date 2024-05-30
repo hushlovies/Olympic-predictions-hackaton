@@ -6,6 +6,9 @@ import Medals from '../views/Medals.vue';
 import Olympics from '../views/Olympics.vue';
 import SummerResults from '../views/SummerResults.vue';
 import WinterResults from '../views/WinterResults.vue';
+import Analyse from '../views/Analyse.vue';
+import Prediction from '../views/Prediction.vue';
+import Miscellaneous from '../views/Miscellaneous.vue';
 
 const routes = [
   { path: '/', name: 'Home', component: Home },// ok
@@ -15,6 +18,9 @@ const routes = [
   { path: '/olympics', name: 'Olympics', component: Olympics },// ok
   { path: '/summer-results', name: 'SummerResults', component: SummerResults }, // ok vide
   { path: '/winter-results', name: 'WinterResults', component: WinterResults },
+  { path: '/analyse', name: 'Analyse', component: Analyse }, //pas encore
+  { path: '/Prediction', name: 'Prediction', component: Prediction }, //pas encore 
+  { path: '/Miscellaneous', name: 'Miscellaneous', component: Miscellaneous }, //pas encore 
 ];
 
 const router = createRouter({

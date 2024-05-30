@@ -10,10 +10,18 @@
   margin-left: 2px;
   margin-right: 10px; 
 }
+.navigation{
+margin-bottom: 50px;
+}
 </style>
 
 <template>
-  <div class="container mx-auto">
+  <div class="navigation bg-gray-300" >
+      <NavbarTab />
+  </div>
+  <div class="container mx-auto mb-5">
+    <h2 class="text-2xl font-bold mb-4">Athletes</h2>
+    
     <div class="mb-4">
       <input v-model="filters.name" type="text" placeholder="Filtre par prénom" class="p-2 border rounded">
       <input v-model="filters.participation" type="number" placeholder="Filtre par participation" class="p-2 border rounded">
@@ -64,7 +72,11 @@
 </template>
 
 <script>
+import NavbarTab from './../components/NavbarTab.vue';
 export default {
+  components: {
+    NavbarTab
+  },
   data() {
     return {
       athletes: [],
