@@ -16,7 +16,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="medal in medals" :key="medal.id_medal" class="bg-white border-b">
+        <tr v-for="medal in medals" :key="medal.id_medal" class="bg-white text-black border-b">
           <td class="px-4 py-2">{{ medal.id_medal }}</td>
           <td class="px-4 py-2">{{ medal.discipline_title }}</td>
           <td class="px-4 py-2">{{ medal.slug_game }}</td>

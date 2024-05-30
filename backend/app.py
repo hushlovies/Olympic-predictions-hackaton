@@ -84,14 +84,69 @@ def athletes():
     
     return jsonify({"message": "Data recup!", "data": results})
 
-
-
 @app.route('/countries')
 def countries():
-    results = query_db("SELECT * FROM country")
+    page = int(request.args.get('page', 1))
+    per_page = int(request.args.get('per_page', 25))
+    offset = (page - 1) * per_page
+    
+    # Query to fetch paginated results
+    query = f"""
+    SELECT 
+    c.country_3_letter_code,
+    c.country_name,
+    COALESCE(sr.gold, 0) + COALESCE(wr.gold, 0) AS total_gold,
+    COALESCE(sr.silver, 0) + COALESCE(wr.silver, 0) AS total_silver,
+    COALESCE(sr.bronze, 0) + COALESCE(wr.bronze, 0) AS total_bronze,
+    COALESCE(a.athlete_count, 0) AS athlete_count
+    FROM 
+        country c
+    LEFT JOIN 
+        (
+            SELECT 
+                country_3_letter_code,
+                SUM(CASE WHEN medal_type = 'GOLD' THEN 1 ELSE 0 END) AS gold,
+                SUM(CASE WHEN medal_type = 'SILVER' THEN 1 ELSE 0 END) AS silver,
+                SUM(CASE WHEN medal_type = 'BRONZE' THEN 1 ELSE 0 END) AS bronze
+            FROM 
+                summer_results
+            GROUP BY 
+                country_3_letter_code
+        ) AS sr ON c.country_3_letter_code = sr.country_3_letter_code
+    LEFT JOIN 
+        (
+            SELECT 
+                country_3_letter_code,
+                SUM(CASE WHEN medal_type = 'GOLD' THEN 1 ELSE 0 END) AS gold,
+                SUM(CASE WHEN medal_type = 'SILVER' THEN 1 ELSE 0 END) AS silver,
+                SUM(CASE WHEN medal_type = 'BRONZE' THEN 1 ELSE 0 END) AS bronze
+            FROM 
+                winter_results
+            GROUP BY 
+                country_3_letter_code
+        ) AS wr ON c.country_3_letter_code = wr.country_3_letter_code
+    LEFT JOIN 
+        (
+            SELECT 
+                country_3_letter_code, 
+                COUNT(*) AS athlete_count
+            FROM 
+                athlete
+            GROUP BY 
+                country_3_letter_code
+        ) AS a ON c.country_3_letter_code = a.country_3_letter_code
+    GROUP BY 
+        c.country_3_letter_code, c.country_name
+        """
+    query += f" ORDER BY c.country_name LIMIT {per_page} OFFSET {offset}"
+
+    results = query_db(query)
+
     if "error" in results:
         return jsonify({"message": "Impossible de récupérer des données", "error": results["error"]}), 500
+    
     return jsonify({"message": "Data recup!", "data": results})
+
 
 @app.route('/medals')
 def medals():

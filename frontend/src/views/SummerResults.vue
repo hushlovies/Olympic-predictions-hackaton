@@ -19,7 +19,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="result in summerResults" :key="result.id_result" class="bg-white border-b">
+        <tr v-for="result in summerResults" :key="result.id_result" class="bg-white  text-black border-b">
           <td class="px-4 py-2">{{ result.id_result }}</td>
           <td class="px-4 py-2">{{ result.discipline_title }}</td>
           <td class="px-4 py-2">{{ result.event_title }}</td>

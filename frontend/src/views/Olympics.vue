@@ -14,7 +14,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="olympic in olympics" :key="olympic.game_slug" class="bg-white border-b">
+        <tr v-for="olympic in olympics" :key="olympic.game_slug" class="bg-white  text-black border-b">
           <td class="px-4 py-2">{{ olympic.game_slug }}</td>
           <td class="px-4 py-2">{{ olympic.game_end_date }}</td>
           <td class="px-4 py-2">{{ olympic.game_start_date }}</td>
