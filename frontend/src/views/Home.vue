@@ -4,9 +4,10 @@
       <div class="text-center max-w-4xl mx-auto">
         <h1 class="text-3xl font-bold text-gray-800 mb-2">Jeux olympiques</h1>
         <p class="text-gray-600">this website serves as forecasting the winners of the 2024 Paris Olympics. Using advanced data analytics, historical performance metrics, 
-and expert insights, our platform provides up-to-date predictions for each event. 
-Stay ahead of the competition with real-time updates, in-depth athlete profiles, and comprehensive analyses, 
-ensuring you have the most accurate predictions for the upcoming Olympic Games. </p>
+          and expert insights, our platform provides up-to-date predictions for each event. 
+          Stay ahead of the competition with real-time updates, in-depth athlete profiles, and comprehensive analyses, 
+          ensuring you have the most accurate predictions for the upcoming Olympic Games. 
+        </p>
       </div>
     </header>
 
@@ -17,18 +18,15 @@ ensuring you have the most accurate predictions for the upcoming Olympic Games.�
           <div class="grid grid-cols-3 gap-4">
             <div class="bg-gray-200 p-4 rounded shadow">Nombre total d'Athètes : {{ totalAthletes }}</div>
             <div class="bg-gray-200 p-4 rounded shadow">Total Pays participant : {{ totalCountries }}</div>
-            <div class="bg-gray-200 p-4 rounded shadow">Another Statistic</div>
+            <div class="bg-gray-200 p-4 rounded shadow">  </div>
           </div>
         </section>
 
-        <section class="mb-6">
-          <h2 class="text-2xl font-bold text-gray-800 mb-4">Medal Information</h2>
-          <div class="bg-gray-200 p-4 rounded shadow h-24"></div>
-        </section>
-
         <section>
-          <h2 class="text-2xl font-bold text-gray-800 mb-4">In Depth Data Visualization</h2>
-          <div class="bg-gray-200 p-4 rounded shadow h-96"></div>
+          <h2 class="text-2xl font-bold text-gray-800 mb-4">Info</h2>
+          <div class=" p-4 rounded shadow h-96">
+            <p>En 2024, la Cérémonie d'ouverture aura lieu sur la Seine, au coeur de la ville hôte. Vivez cet évènement exceptionnel avec vos invités en profitant d'un accès rapide au site, d'une hospitalité haut de gamme et de places offrant une vue imprenable sur Paris et les célébrations.</p>
+          </div>
         </section>
       </div>
     </main>

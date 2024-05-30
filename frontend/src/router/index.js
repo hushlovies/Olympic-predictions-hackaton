@@ -15,7 +15,6 @@ const routes = [
   { path: '/olympics', name: 'Olympics', component: Olympics },// ok
   { path: '/summer-results', name: 'SummerResults', component: SummerResults }, // ok vide
   { path: '/winter-results', name: 'WinterResults', component: WinterResults },
-
 ];
 
 const router = createRouter({

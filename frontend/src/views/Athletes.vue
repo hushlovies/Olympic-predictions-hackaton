@@ -1,20 +1,19 @@
 <style>
 .medal {
-  display: inline-block; /* Assure que l'image et le texte sont sur la même ligne */
-  vertical-align: middle; /* Centre verticalement les images avec le texte */
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .medal-count {
   display: inline-block;
   vertical-align: middle;
-  margin-left: 2px; /* Espacement entre l'image et le texte */
-  margin-right: 10px; /* Espacement entre les groupes de médailles */
+  margin-left: 2px;
+  margin-right: 10px; 
 }
 </style>
 
 <template>
-  <div class="container mx-auto mt-10">
-    <h2 class="text-2xl font-bold mb-4">Athletes</h2>
+  <div class="container mx-auto">
     <div class="mb-4">
       <input v-model="filters.name" type="text" placeholder="Filtre par prénom" class="p-2 border rounded">
       <input v-model="filters.participation" type="number" placeholder="Filtre par participation" class="p-2 border rounded">
@@ -56,7 +55,7 @@
         </tr>
       </tbody>
     </table>
-    <!-- Ajout des boutons de pagination ici -->
+
     <div class="flex justify-center my-4">
       <button @click="changePage(currentPage - 1)" :disabled="currentPage <= 1" class="mx-2 p-2 border rounded">Précédent</button>
       <button @click="changePage(currentPage + 1)" :disabled="currentPage >= totalPages" class="mx-2 p-2 border rounded">Suivant</button>
@@ -81,7 +80,7 @@ export default {
     };
   },
   computed: {
-    // Assurez-vous que cette propriété est correctement définie ici
+
     filteredAthletes() {
       return this.athletes.filter(athlete => {
         return (!this.filters.name || athlete.athlete_full_name.toLowerCase().includes(this.filters.name.toLowerCase())) &&
@@ -111,7 +110,7 @@ export default {
         .then(response => response.json())
         .then(data => {
           this.athletes = data.data;
-          this.totalPages = Math.ceil(data.total / this.perPage); // Assurez-vous que votre backend renvoie le total
+          this.totalPages = Math.ceil(data.total / this.perPage);
         })
         .catch(error => {
           console.error('Error fetching data:', error);

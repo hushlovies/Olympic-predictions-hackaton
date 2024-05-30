@@ -53,7 +53,6 @@ def athletes():
     year_filter = request.args.get('year', '')
     participation_filter = request.args.get('participation', '')
 
-    # Jointure avec la table country
     query = """
     SELECT a.*, c.country_name 
     FROM athlete a
@@ -74,7 +73,7 @@ def athletes():
     if conditions:
         query += " AND ".join(conditions)
     else:
-        query += "1"  # Si aucune condition, cette partie de la requête renvoie toujours vrai
+        query += "1"
 
     query += f" ORDER BY a.athlete_full_name LIMIT {per_page} OFFSET {offset}"
 
