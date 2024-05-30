@@ -3,7 +3,7 @@
     <header class="w-full bg-white p-6 shadow">
       <div class="text-center max-w-4xl mx-auto">
         <h1 class="text-3xl font-bold text-gray-800 mb-2">Jeux olympiques</h1>
-        <p class="text-gray-600">this website serves as forecasting the winners of the 2024 Paris Olympics. Using advanced data analytics, historical performance metrics, 
+        <p class="text-gray-600">This website serves as forecasting the winners of the 2024 Paris Olympics. Using advanced data analytics, historical performance metrics, 
           and expert insights, our platform provides up-to-date predictions for each event. 
           Stay ahead of the competition with real-time updates, in-depth athlete profiles, and comprehensive analyses, 
           ensuring you have the most accurate predictions for the upcoming Olympic Games. 
