@@ -4,13 +4,13 @@
     <table class="min-w-full table-auto">
       <thead class="bg-gray-800 text-white">
         <tr>
-          <th class="px-4 py-2">3 Letter Code</th>
+          <!-- <th class="px-4 py-2">3 Letter Code</th> -->
           <th class="px-4 py-2">Country Name</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="country in countries" :key="country.country_3_letter_code" class="bg-white border-b">
-          <td class="px-4 py-2">{{ country.country_3_letter_code }}</td>
+          <!-- <td class="px-4 py-2">{{ country.country_3_letter_code }}</td> -->
           <td class="px-4 py-2">{{ country.country_name }}</td>
         </tr>
         <tr v-if="countries.length === 0" class="bg-white border-b">

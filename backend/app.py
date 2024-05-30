@@ -1,6 +1,7 @@
 import mysql.connector
 from flask import Flask, jsonify
 from flask_cors import CORS
+from flask import request
 
 config = {
     'user': '360831_admin',
@@ -25,43 +26,95 @@ def query_db(query):
         return results
     except mysql.connector.Error as err:
         return {"error": str(err)}
+    
+@app.route('/')
+def home():
 
-@app.route('/athletes') #OK
+    athlete_count_result = query_db("SELECT COUNT(*) AS total FROM athlete")
+    if "error" in athlete_count_result:
+        return jsonify({"message": "Impossible de récupérer le nombre d'athlètes", "error": athlete_count_result["error"]}), 500
+    total_athletes = athlete_count_result[0]['total']
+
+    country_count_result = query_db("SELECT COUNT(*) AS total FROM country")
+    if "error" in country_count_result:
+        return jsonify({"message": "Impossible de récupérer le nombre de pays", "error": country_count_result["error"]}), 500
+    total_countries = country_count_result[0]['total']
+
+    return jsonify({"totalAthletes": total_athletes, "totalCountries": total_countries})
+
+@app.route('/athletes')
 def athletes():
-    results = query_db("SELECT * FROM athlete LIMIT 100")
+    page = int(request.args.get('page', 1))
+    per_page = int(request.args.get('per_page', 25))
+    offset = (page - 1) * per_page
+
+    name_filter = request.args.get('name', '')
+    country_filter = request.args.get('country', '')
+    year_filter = request.args.get('year', '')
+    participation_filter = request.args.get('participation', '')
+
+    # Jointure avec la table country
+    query = """
+    SELECT a.*, c.country_name 
+    FROM athlete a
+    LEFT JOIN country c ON a.country_3_letter_code = c.country_3_letter_code
+    WHERE """
+    
+    conditions = []
+    
+    if name_filter:
+        conditions.append(f"a.athlete_full_name LIKE '%{name_filter}%'")
+    if country_filter:
+        conditions.append(f"c.country_3_letter_code LIKE '%{country_filter}%'")
+    if year_filter:
+        conditions.append(f"a.athlete_year_birth LIKE '%{year_filter}%'")
+    if participation_filter:
+        conditions.append(f"a.games_participations LIKE '%{participation_filter}%'")
+    
+    if conditions:
+        query += " AND ".join(conditions)
+    else:
+        query += "1"  # Si aucune condition, cette partie de la requête renvoie toujours vrai
+
+    query += f" ORDER BY a.athlete_full_name LIMIT {per_page} OFFSET {offset}"
+
+    results = query_db(query)
     if "error" in results:
-        return jsonify({"message": "Impossible de récupérer des données", "error": results["error"]}), 500
+        return jsonify({"message": "Impossible de récupérer les données", "error": results["error"]}), 500
+    
     return jsonify({"message": "Data recup!", "data": results})
 
-@app.route('/countries')#OK
+
+
+@app.route('/countries')
 def countries():
     results = query_db("SELECT * FROM country")
     if "error" in results:
         return jsonify({"message": "Impossible de récupérer des données", "error": results["error"]}), 500
     return jsonify({"message": "Data recup!", "data": results})
 
-@app.route('/medals') #OK vide
+@app.route('/medals')
 def medals():
     results = query_db("SELECT * FROM medals LIMIT 25")
     if "error" in results:
         return jsonify({"message": "Impossible de récupérer des données", "error": results["error"]}), 500
     return jsonify({"message": "Data recup!", "data": results})
 
-@app.route('/olympics') #OK vide
+@app.route('/olympics') 
 def olympics():
     results = query_db("SELECT * FROM olympics LIMIT 25")
     if "error" in results:
         return jsonify({"message": "Impossible de récupérer des données", "error": results["error"]}), 500
     return jsonify({"message": "Data recup!", "data": results})
 
-@app.route('/summer_results') #OK vide
+@app.route('/summer_results')
 def summer_results():
     results = query_db("SELECT * FROM summer_results LIMIT 1")
     if "error" in results:
         return jsonify({"message": "Impossible de récupérer des données", "error": results["error"]}), 500
     return jsonify({"message": "Data recup!", "data": results})
 
-@app.route('/winter_results') #OK vide
+@app.route('/winter_results')
 def winter_results():
     results = query_db("SELECT * FROM winter_results LIMIT 1")
     if "error" in results:
