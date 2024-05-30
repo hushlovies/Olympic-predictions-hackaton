@@ -10,34 +10,34 @@
           <th class="px-4 py-2">Game</th>
           <th class="px-4 py-2">Participant Type</th>
           <th class="px-4 py-2">Medal Type</th>
-          <th class="px-4 py-2">Rank Equal</th>
           <th class="px-4 py-2">Rank Position</th>
-          <th class="px-4 py-2">Country Code</th>
+          <th class="px-4 py-2">Country</th>
           <th class="px-4 py-2">Athlete URL</th>
-          <th class="px-4 py-2">Value Unit</th>
-          <th class="px-4 py-2">Value Type</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="result in summerResults" :key="result.id_result" class="bg-white  text-black border-b">
+        <tr v-for="result in summerResults" :key="result.id_result" class="bg-white text-black border-b">
           <td class="px-4 py-2">{{ result.id_result }}</td>
           <td class="px-4 py-2">{{ result.discipline_title }}</td>
           <td class="px-4 py-2">{{ result.event_title }}</td>
           <td class="px-4 py-2">{{ result.slug_game }}</td>
           <td class="px-4 py-2">{{ result.participant_type }}</td>
           <td class="px-4 py-2">{{ result.medal_type }}</td>
-          <td class="px-4 py-2">{{ result.rank_equal }}</td>
           <td class="px-4 py-2">{{ result.rank_position }}</td>
-          <td class="px-4 py-2">{{ result.country_3_letter_code }}</td>
+          <td class="px-4 py-2">{{ result.country_name }}</td>
           <td class="px-4 py-2">{{ result.athlete_url }}</td>
-          <td class="px-4 py-2">{{ result.value_unit }}</td>
-          <td class="px-4 py-2">{{ result.value_type }}</td>
         </tr>
         <tr v-if="summerResults.length === 0" class="bg-white border-b">
           <td class="px-4 py-2" colspan="12">No data available</td>
         </tr>
       </tbody>
     </table>
+    <!-- Pagination buttons -->
+    <div class="flex justify-center my-4">
+      <button @click="goToFirstPage" :disabled="currentPage === 1" class="mx-2 p-2 border rounded">First</button>
+      <button @click="changePage(currentPage - 1)" :disabled="currentPage <= 1" class="mx-2 p-2 border rounded">Previous</button>
+      <button @click="changePage(currentPage + 1)" :disabled="currentPage >= totalPages" class="mx-2 p-2 border rounded">Next</button>
+    </div>
   </div>
 </template>
 
@@ -46,19 +46,37 @@ export default {
   data() {
     return {
       summerResults: [],
+      currentPage: 1,
+      totalPages: 1,
+      perPage: 25,
     };
   },
   mounted() {
-    fetch('http://localhost:5000/summer_results')
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.data) {
-          this.summerResults = data.data;
-        }
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-      });
+    this.fetchResults();
+  },
+  methods: {
+    fetchResults() {
+      fetch(`http://localhost:5000/summer_results?page=${this.currentPage}&per_page=${this.perPage}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.data) {
+            this.summerResults = data.data;
+            this.totalPages = Math.ceil(data.total / this.perPage);
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        });
+    },
+    changePage(page) {
+      if (page > 0 && page <= this.totalPages) {
+        this.currentPage = page;
+        this.fetchResults();
+      }
+    },
+    goToFirstPage() {
+      this.changePage(1);
+    },
   },
 };
 </script>

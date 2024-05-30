@@ -164,17 +164,61 @@ def olympics():
 
 @app.route('/summer_results')
 def summer_results():
-    results = query_db("SELECT * FROM summer_results LIMIT 1")
+    page = int(request.args.get('page', 1))
+    per_page = int(request.args.get('per_page', 25))
+    offset = (page - 1) * per_page
+
+    # Query to get the total count of results
+    total_query = """
+    SELECT COUNT(*) as total
+    FROM summer_results sr
+    INNER JOIN country c ON sr.country_3_letter_code = c.country_3_letter_code
+    """
+    total_result = query_db(total_query)
+    total_count = total_result[0]['total'] if total_result else 0
+
+    # Query to get the paginated results
+    query = f"""
+    SELECT sr.*, c.country_name
+    FROM summer_results sr
+    INNER JOIN country c ON sr.country_3_letter_code = c.country_3_letter_code
+    LIMIT {per_page} OFFSET {offset}
+    """
+    results = query_db(query)
+
     if "error" in results:
         return jsonify({"message": "Impossible de récupérer des données", "error": results["error"]}), 500
-    return jsonify({"message": "Data recup!", "data": results})
+    
+    return jsonify({"message": "Data recup!", "data": results, "total": total_count})
 
 @app.route('/winter_results')
 def winter_results():
-    results = query_db("SELECT * FROM winter_results LIMIT 1")
+    page = int(request.args.get('page', 1))
+    per_page = int(request.args.get('per_page', 25))
+    offset = (page - 1) * per_page
+
+    # Query to get the total count of results
+    total_query = """
+    SELECT COUNT(*) as total
+    FROM winter_results sr
+    INNER JOIN country c ON sr.country_3_letter_code = c.country_3_letter_code
+    """
+    total_result = query_db(total_query)
+    total_count = total_result[0]['total'] if total_result else 0
+
+    # Query to get the paginated results
+    query = f"""
+    SELECT sr.*, c.country_name
+    FROM winter_results sr
+    INNER JOIN country c ON sr.country_3_letter_code = c.country_3_letter_code
+    LIMIT {per_page} OFFSET {offset}
+    """
+    results = query_db(query)
+
     if "error" in results:
         return jsonify({"message": "Impossible de récupérer des données", "error": results["error"]}), 500
-    return jsonify({"message": "Data recup!", "data": results})
+    
+    return jsonify({"message": "Data recup!", "data": results, "total": total_count})
 
 if __name__ == "__main__":
     app.run(debug=True)
