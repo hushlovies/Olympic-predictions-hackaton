@@ -34,7 +34,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="athlete in filteredAthletes" :key="athlete.athlete_url" class="bg-white border-b">
+        <tr v-for="athlete in filteredAthletes" :key="athlete.athlete_url" class="bg-white text-black border-b">
           <td class="px-4 py-2">
             <a :href="athlete.athlete_url" target="_blank">{{ athlete.athlete_full_name }}</a>
           </td>

@@ -9,7 +9,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="country in countries" :key="country.country_3_letter_code" class="bg-white border-b">
+        <tr v-for="country in countries" :key="country.country_3_letter_code" class="bg-white  text-black border-b">
           <td class="px-4 py-2">{{ country.country_3_letter_code }}</td>
           <td class="px-4 py-2">{{ country.country_name }}</td>
         </tr>
