@@ -27,7 +27,7 @@ Ouvrir 2 terminal "CMD"
 
 #lien du Canva  
 
-https://www.canva.com/design/DAGGsffId-U/xqJ45yIxtTe45gagqxcd1Q/edit?utm_content=DAGGsffId-U&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+[https://www.canva.com/design/DAGGsffId-U/xqJ45yIxtTe45gagqxcd1Q/edit?utm_content=DAGGsffId-U&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton](https://www.canva.com/design/DAGGsffId-U/xqJ45yIxtTe45gagqxcd1Q/edit)
 
 #lien du Jira 
 
