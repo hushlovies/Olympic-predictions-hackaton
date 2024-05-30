@@ -1,0 +1,7 @@
+
+gunicorn app:app
+pip install flask
+pip install flask-cors
+npm install vue-router@4
+pip install mysql-connector-python
+python app.py
