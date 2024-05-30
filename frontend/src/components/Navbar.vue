@@ -6,8 +6,9 @@
       <div>
         <a href="/" class="mx-2 text-black hover:text-black">Home</a>
         <a href="/Athletes" class="mx-2 text-black hover:text-black">Tableau</a>
-        <a href="/countries" class="mx-2 text-black hover:text-black">Analyse</a>
-        <a href="/medals" class="mx-2 text-black hover:text-black">Prédiction</a>
+        <a href="/Analyse" class="mx-2 text-black hover:text-black">Analyse</a>
+        <a href="/Prediction" class="mx-2 text-black hover:text-black">Prédiction</a>
+        <a href="/Miscellaneous" class="mx-2 text-black hover:text-black">Miscellaneous news</a>
       </div>
     </div>
   </nav>

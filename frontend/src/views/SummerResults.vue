@@ -1,4 +1,12 @@
+<style>
+  .navigation{
+  margin-bottom: 50px;
+  }
+</style>
 <template>
+   <div class="navigation bg-gray-300" >
+      <NavbarTab />
+    </div>
   <div class="container mx-auto mt-10">
     <h2 class="text-2xl font-bold mb-4">Summer Results</h2>
     <table class="min-w-full table-auto">
@@ -42,7 +50,11 @@
 </template>
 
 <script>
+import NavbarTab from './../components/NavbarTab.vue';
 export default {
+  components: {
+    NavbarTab
+  },
   data() {
     return {
       summerResults: [],

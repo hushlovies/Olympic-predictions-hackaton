@@ -1,7 +1,9 @@
 import mysql.connector
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request, send_file
 from flask_cors import CORS
-from flask import request
+import matplotlib.pyplot as plt
+import seaborn as sns
+import io
 
 config = {
     'user': '360831_admin',
@@ -41,6 +43,44 @@ def home():
     total_countries = country_count_result[0]['total']
 
     return jsonify({"totalAthletes": total_athletes, "totalCountries": total_countries})
+
+# Function to generate the plot
+def generate_plot():
+    # This top countries are found on the notebook
+    top_10_countries = {
+        'United States': 17847,
+        'France': 11988,
+        'Great Britain': 11404,
+        'Italy': 10260,
+        'Germany': 9326,
+        'Canada': 9279,
+        'Japan': 8289,
+        'Sweden': 8052,
+        'Australia': 7513,
+        'Hungary': 6547
+    }
+
+    # Extract the keys (countries) from the dictionary and convert them into a list
+    countries = list(top_10_countries.keys())
+
+    plt.figure(figsize=(12, 6))
+    sns.barplot(x=countries, y=list(top_10_countries.values()))
+    plt.xlabel('Teams')
+    plt.ylabel('Count of Team Participation')
+    plt.title('Top 10 Countries Participated In Olympics')
+
+    # Save plot to a BytesIO object
+    image_stream = io.BytesIO()
+    plt.savefig(image_stream, format='png')
+    image_stream.seek(0)
+
+    return image_stream
+
+# Route to serve the plot image
+@app.route('/plot')
+def plot():
+    image_stream = generate_plot()
+    return send_file(image_stream, mimetype='image/png')
 
 @app.route('/athletes')
 def athletes():
@@ -189,6 +229,7 @@ def summer_results():
         return jsonify({"message": "Impossible de récupérer des données", "error": results["error"]}), 500
     
     return jsonify({"message": "Data recup!", "data": results, "total": total_count})
+
 
 @app.route('/winter_results')
 def winter_results():
