@@ -9,6 +9,8 @@ Dans le terminal backend
  - pip install flask-cors                # pour communiqué entre back et le front 
  - npm install vue-router@4              # pour les routes
  - pip install mysql-connector-python    # pour la conn à la BDD mysql
+ - pip install seaborn
+ - pip install matplotlib
  
    Faire cette commande "python -m venv venv source venv\Scripts\activate"
 
