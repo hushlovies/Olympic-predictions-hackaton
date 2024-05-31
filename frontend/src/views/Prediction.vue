@@ -1,7 +1,7 @@
 
 <template>
   <div class="container bg-white text-black mx-auto mt-10">
-    <h1 class="text-2xl font-bold mb-4">Prediction</h1>
+    <h1 class="text-2xl font-bold mb-4 pt-7">Prediction</h1>
     <div>
       <img src="../assets/images/modeles.png" alt="modeles" class="mx-auto" />
       <img src="../assets/images/report1.png" alt="report1" class="mx-auto my-10" />
