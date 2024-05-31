@@ -1,7 +1,7 @@
 
 <template>
   <div class="container bg-white text-black mx-auto mt-10">
-    <h1 class="my-10">Prediction</h1>
+    <h1 class="text-2xl font-bold mb-4">Prediction</h1>
     <div>
       <img src="../assets/images/modeles.png" alt="modeles" class="mx-auto" />
       <img src="../assets/images/report1.png" alt="report1" class="mx-auto my-10" />
@@ -76,7 +76,6 @@ ul li{
  margin-left: 10px; 
 }
 .paraTitle{
-  
   font-size: 20px;
   margin: 10px 0;
 }

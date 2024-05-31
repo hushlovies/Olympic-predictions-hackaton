@@ -13,7 +13,7 @@ img {
 
 <template>
   <div class="container text-black bg-white mx-auto mt-10 text-center">
-    <h1>Analyse</h1>
+    <h1 class="text-2xl font-bold mb-4">Analyse</h1>
     <div class="inner-div mx-auto">
       <p class="mt-10">
         Here are some data graphs generated using the notebook. They include the top 10 countries participating in the Olympics and the age and gender distribution of the athletes. For more details, please refer to the notebook.
