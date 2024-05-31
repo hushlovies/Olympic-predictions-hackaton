@@ -2,7 +2,7 @@
 <!-- <div class="container bg-white text-black mx-auto mt-10"> -->
 <template>
   <div class="container bg-white text-black mx-auto mt-10">
-    <h1 class="text-2xl font-bold mb-4">Fait Divers</h1>
+    <h1 class="text-2xl font-bold mb-4 pt-7">Fait Divers</h1>
   <div class="m-20 text-left">
 
     <p class="paraTitle" >1. La France a organisé 6 JO : 3 d’hiver et 3 d’été (en comptant celui de 2024) ?</p>
