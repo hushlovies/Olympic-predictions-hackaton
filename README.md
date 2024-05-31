@@ -18,17 +18,22 @@ Dans le terminal frontend
 
 Ouvrir 2 terminal "CMD"
 
-#commande pour initialisé le "backend"
+# commande pour initialisé le "backend"
 - python app.py
 
-#commande pour initialisé le "frontend"
+#c ommande pour initialisé le "frontend"
 - npm run dev
 
 
-#lien du Canva  
+# lien du Canva  
 
 [https://www.canva.com/design/DAGGsffId-U/xqJ45yIxtTe45gagqxcd1Q/edit?utm_content=DAGGsffId-U&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton](https://www.canva.com/design/DAGGsffId-U/xqJ45yIxtTe45gagqxcd1Q/edit)
 
-#lien du Jira 
+# lien du Jira 
 
 https://gestion-projet-ipssi.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog?epics=visible
+
+
+# Lien Figma
+
+https://www.figma.com/design/O35Jt9qOLdcPYlfs131Fkr/Web-page?node-id=0-1&t=FEn3ETlqvzBt5Ap8-0
